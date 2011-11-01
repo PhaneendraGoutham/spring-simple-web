@@ -1,0 +1,6 @@
+#set($dollar = '$')
+<nav>
+    <ul class="nav">
+        <li><a href="${dollar}{link.contextPath}/index">home</a></li>
+    </ul>
+</nav>

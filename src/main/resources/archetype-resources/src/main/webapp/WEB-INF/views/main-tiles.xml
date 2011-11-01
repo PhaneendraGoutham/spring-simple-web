@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+              "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+    <!-- acts like abstract definition -->
+    <definition name="masterDfn" template="/WEB-INF/layouts/main.vm" templateType="velocity">
+
+        <put-attribute name="title" value="${artifactId}" />
+        <put-attribute name="metaDescription" value="web application from openhouse.sk" />
+
+        <put-attribute name="metaAuthor" value="${artifactId}" />
+        <put-attribute name="metaCopyright" value="${artifactId}" />
+
+        <put-attribute name="body" value="/WEB-INF/views/index.vm" type="velocity"/>
+
+        <put-list-attribute name="styleSheets">
+            <add-attribute value="/resources/css/screen.css" type="velocity" />
+        </put-list-attribute>
+
+        <put-list-attribute name="metaKeywords" >
+            <add-attribute value="openhouse.sk" type="velocity"/>
+            <add-attribute value="web application" type="velocity"/>
+        </put-list-attribute>
+    </definition>
+
+    <!-- main default definition -->
+    <definition name="mainDfn" extends="masterDfn" templateType="velocity">
+    </definition>
+
+    <!-- error definition -->
+    <definition name="errorDfn" template="/WEB-INF/layouts/error.vm" templateType="velocity">
+
+        <put-attribute name="title" value="Error" />
+
+        <put-attribute name="metaAuthor" value="${artifactId}" />
+        <put-attribute name="metaCopyright" value="${artifactId}" />
+
+        <put-list-attribute name="styleSheets">
+            <add-attribute value="/resources/css/screen.css" type="velocity" />
+        </put-list-attribute>
+    </definition>
+
+    <!-- pages -->
+
+    <definition name="index" extends="mainDfn" templateType="velocity">
+        <put-attribute name="title" value="${artifactId} | Index" />
+        <put-attribute name="body" value="/WEB-INF/views/index.vm" type="velocity" />
+    </definition>
+
+    <!-- error pages -->
+    <definition name="404" extends="errorDfn" templateType="velocity">
+        <put-attribute name="title" value="${artifactId} | 404 - Page Not Found" />
+        <put-attribute name="body" value="/WEB-INF/views/error/404.vm" type="velocity" />
+    </definition>
+
+    <definition name="exception" extends="errorDfn" templateType="velocity">
+        <put-attribute name="title" value="${artifactId} | Exception" />
+        <put-attribute name="body" value="/WEB-INF/views/error/exception.vm" type="velocity" />
+    </definition>
+
+</tiles-definitions>

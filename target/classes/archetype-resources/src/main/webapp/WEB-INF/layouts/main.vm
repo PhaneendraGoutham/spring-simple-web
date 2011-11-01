@@ -1,0 +1,36 @@
+#set($dollar = '$')
+#set($hash = '#')
+<!doctype html>
+<lang="en">
+    <head>
+        <title>${dollar}tiles.getAsString({"name":"title"})</title>
+
+        <meta charset="UTF-8" />
+
+        <meta name="author" content="${dollar}tiles.getAsString({"name":"metaAuthor"})" />
+        <meta name="copyright" content="${dollar}tiles.getAsString({"name":"metaCopyright"})" />
+
+        <meta name="description" content="${dollar}tiles.getAsString({"name":"metaDescription"})" />
+        ${dollar}tiles.importAttribute({"name":"metaKeywords"})
+        <meta name="keywords" content="${hash}foreach(${dollar}keyword in ${dollar}metaKeywords)${dollar}keyword.value, ${hash}end" />
+
+        ${dollar}tiles.importAttribute({"name":"styleSheets"})
+        ${hash}foreach(${dollar}styleSheet in ${dollar}styleSheets)
+            <link type="text/css" rel="stylesheet" href="${dollar}link.contextPath${dollar}styleSheet.value"/>
+        ${hash}end
+
+        <!-- script -->
+    </head>
+
+    <body>
+        <div id="wrapper">
+
+            <header>
+                logo
+            </header>
+
+            ${dollar}tiles.insertAttribute({"name":"body"})
+
+        </div><!-- #wrapper -->
+    </body>
+</html>
